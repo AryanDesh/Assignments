@@ -14,11 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const read = () => __awaiter(void 0, void 0, void 0, function* () {
-    fs_1.default.readFile("D:/100x//a.txt", "utf-8", function (err, data) {
+    fs_1.default.readdir("D:/100x/files", function (err, file) {
         if (err)
             console.log('no such file exists');
         else
-            console.log(data);
+            console.log(file);
     });
 });
 read();
