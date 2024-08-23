@@ -22,9 +22,6 @@ const AdminMiddleware = (req : Request, res : Response, next : NextFunction) => 
         const jwtToken = words[1];
         try{
             const check = jwt.verify(jwtToken, JWT_SECRET);
-            res.status(200).json({
-                message : "Valid Admin"
-            })
             next();
         }
         catch(e) {

@@ -81,6 +81,9 @@ UserRouter.post('/signIn', async (req,res) => {
 UserRouter.get('/courses', UserMiddleware, async (req, res) => {
     const username = req.body.username;
     try {
+        if (!username) {
+            return res.status(400).json({ message: "Username is required" });
+        }
         const user = await UserModel.findOne({ username })
             .populate('purchasedCourses', 'title description')
             .exec();
@@ -88,18 +91,21 @@ UserRouter.get('/courses', UserMiddleware, async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-
         const courses = user.purchasedCourses.map(course => ({
             title: course.title,
             description: course.description
         }));
-        res.json({ courses });
+
+        return res.json({ courses });
 
     } catch (error) {
-        console.error(error); 
-        res.status(500).json({ message: "An error occurred while retrieving the courses" });
+        console.error(error);
+        if (!res.headersSent) {
+            return res.status(500).json({ message: "An error occurred while retrieving the courses" });
+        }
     }
-})
+});
+
 
 
 UserRouter.post('/courses/:courseId', UserMiddleware, async (req, res) => {

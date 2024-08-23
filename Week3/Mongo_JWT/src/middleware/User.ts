@@ -23,9 +23,6 @@ const UserMiddleware = (req : Request, res : Response, next : NextFunction) => {
         try{
             const decoded = jwt.verify(jwtToken, JWT_SECRET) as { username: string };
             req.body.username = decoded.username; 
-            res.status(200).json({
-                message : "Valid user"
-            })
             next();
         }
         catch(e) {

@@ -8,7 +8,7 @@ import { z, ZodError } from 'zod';
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
-const router = Router();
+const AdminRouter = Router();
 
 const SignupSchema = z.object({
     username: z.string().min(1),
@@ -27,7 +27,7 @@ const CourseSchema = z.object({
     price: z.number().positive()
 });
 
-router.post('/signup', async (req: Request, res: Response) => {
+AdminRouter.post('/signup', async (req: Request, res: Response) => {
     try {
         SignupSchema.parse(req.body);
         const { username, password } = req.body;
@@ -46,7 +46,7 @@ router.post('/signup', async (req: Request, res: Response) => {
     }
 });
 
-router.post('/signin', async (req: Request, res: Response) => {
+AdminRouter.post('/signin', async (req: Request, res: Response) => {
     try {
         SigninSchema.parse(req.body);
         const { username, password } = req.body;
@@ -66,7 +66,7 @@ router.post('/signin', async (req: Request, res: Response) => {
     }
 });
 
-router.post('/courses', AdminMiddleware, async (req: Request, res: Response) => {
+AdminRouter.post('/courses', AdminMiddleware, async (req: Request, res: Response) => {
     try {
         CourseSchema.parse(req.body);
         const { title, description, imageLink, price } = req.body;
@@ -84,7 +84,7 @@ router.post('/courses', AdminMiddleware, async (req: Request, res: Response) => 
     }
 });
 
-router.get('/courses', AdminMiddleware, async (req: Request, res: Response) => {
+AdminRouter.get('/courses', AdminMiddleware, async (req: Request, res: Response) => {
     try {
         const courses = await CourseModel.find({}).exec();
         res.json({ courses });
@@ -94,4 +94,6 @@ router.get('/courses', AdminMiddleware, async (req: Request, res: Response) => {
     }
 });
 
-export default router;
+export {
+    AdminRouter
+}
