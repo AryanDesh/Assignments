@@ -1,0 +1,71 @@
+/* Card.css */
+
+.card-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    max-width: 400px;
+    margin: 20px auto;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  
+  .card-title:hover {
+    color: #3498db;
+    border-color: #2980b9;
+  }
+  
+  .card-description {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .card-social-media {
+    margin-top: 20px;
+  }
+  
+  .card-social-media h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .card-social-media ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .card-social-media li {
+    margin-bottom: 12px;
+  }
+  
+  .card-social-media a {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s, text-decoration 0.3s;
+  }
+  
+  .card-social-media a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+  }
+  
