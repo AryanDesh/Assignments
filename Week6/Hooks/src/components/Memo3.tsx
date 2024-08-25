@@ -1,9 +1,30 @@
-import React from 'react'
+import React, { useState, useMemo } from 'react';
 
-function Memo3() {
-  return (
-    <div>Memo3</div>
-  )
-}
+// You have been given a list of items you shopped from the grocery store
+// You need to calculate the total amount of money you spent
 
-export default Memo3
+ const Memo3 = () => {
+    const [items, setItems] = useState([
+        { name: 'Chocolates', value: 10 },
+        { name: 'Chips', value: 20 },
+        { name: 'Onion', value: 30 },
+        { name: 'Tomato', value: 30 },
+    ]);
+
+    const totalValue = useMemo(() => {
+        return items.reduce((total, item) => total + item.value, 0);
+    }, [items]); 
+
+    return (
+        <div>
+            <ul>
+                {items.map((item, index) => (
+                    <li key={index}>{item.name} - Price: ${item.value}</li>
+                ))}
+            </ul>
+            <p>Total Value: ${totalValue}</p>
+        </div>
+    );
+};
+
+export default Memo3;

@@ -19,23 +19,18 @@ for (let i = 0; i < TOTAL_LINES; i++) {
 
 const Memo2 :React.FC = () => {
 
-    const [input, setInput] = useState(0)
-    const [input2, setInput2] = useState(0)
+    const [input, setInput] = useState("")
+    const [sentences] = useState(ALL_WORDS)
 
     const results = useMemo(() => {
-        return ALL_WORDS.slice(input, input2);
-    }, [input, input2])
+        return sentences.filter(x => x.includes(input))
+    }, [input])
 
   return (
     <div>
         <input
         value ={input}
-        onChange ={(e) => {setInput(Number(e.target.value))}}
-        >
-        </input>
-        <input
-        value ={input2}
-        onChange ={(e) => {setInput2(Number(e.target.value))}}
+        onChange ={(e) => {setInput(e.target.value)}}
         >
         </input>
         <div>
